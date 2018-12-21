@@ -90,14 +90,14 @@
       margin: 0 auto;
     }
 
-    .downloadResults .item {
+    .downloadResults .item_phone {
       overflow: hidden;
       position: relative;
       height: 84px;
       margin-bottom: 20px;
     }
 
-    .downloadResults .item .logo {
+    .downloadResults .item_phone .logo {
       width: 180px;
       height: 84px;
       float: left;
@@ -106,31 +106,46 @@
       border-radius: 8px;
     }
 
-    .downloadResults .item .desc {
+    .downloadResults .item_phone .desc {
       margin-left: 180px;
       padding-left: 20px;
       line-height: 30px;
     }
 
     @media screen and (max-width: 450px) {
-      .downloadResults .item .logo {
+      .downloadResults .item_phone .logo {
         max-width: 40%;
       }
 
-      .downloadResults .item .desc {
+      .downloadResults .item_phone .desc {
         margin-left: 40%;
       }
     }
 
-    .downloadResults .item .status {
+    .downloadResults .item_phone .status {
       color: #00b4ff;
     }
 
-    .downloadResults .item .download {
+    .downloadResults .item_phone .download {
       position: absolute;
       bottom: 5px;
       right: 5px;
       color: #18bc9c;
+    }
+
+    .downloadResults .item_pad {
+      overflow: hidden;
+      position: relative;
+      line-height: 45px;
+    }
+
+    .downloadResults .item_pad:nth-child(2n-1) {
+      background-color: #2f4f4f;
+    }
+
+    .downloadResults .item_pad p {
+      float: left;
+      width: 25%;
     }
 
     /* tips style */
@@ -214,17 +229,25 @@
 </div>
 <div class="downloadResults">
   <div class="content" id="downloadResultsContent">
-    <!--<div class="item">-->
+    <!--for phone style-->
+    <!--<div class="item_phone">-->
     <!--<div class="logo">-->
-    <!--<img class="img_with_auto pre-vertical-left" src="${_ads[index % 2]}"/>-->
+    <!--<img class="img_with_auto pre-vertical-center" src="https://wxungang.github.io/tosptodo/ads/alipay/alipay.jpg">-->
     <!--</div>-->
     <!--<div class="desc">-->
-    <!--<div class="title pre-ellipsis">Despite our efforts down the stretch the Suns pulled away with this one,-->
-    <!--111-103.-->
+    <!--<div class="title pre-ellipsis">http://www.lspie.net/output/elonmusk/1063657780534341632/180x320/180x320.ts-->
     <!--</div>-->
-    <!--<div class="status">下载成功</div>-->
-    <!--<div content="download">另存到本地</div>-->
+    <!--<div class="status">搬运成功 : 180x320</div>-->
     <!--</div>-->
+    <!--<div class="download"><a href="http://www.lspie.net/output/elonmusk/1063657780534341632/180x320/180x320.ts">另存到本地</a></div>-->
+    <!--</div>-->
+
+    <!-- for pad & pc style -->
+    <!--<div class="item_pad">-->
+        <!--<p class="quality">${item.quality || '-'}</p>-->
+        <!--<p class="type">${item.type}</p>-->
+        <!--<p class="size">${item.size}</p>-->
+        <!--<p class="url" style="text-decoration: underline;"><a href="${item.url}">Download</a></p>-->
     <!--</div>-->
   </div>
 </div>
@@ -261,6 +284,7 @@
 <script type="text/javascript" src="libs/zepto.js"></script>
 <!--<script type="text/javascript" src="libs/download.js"></script>-->
 <script type="text/javascript">
+  let _flag = false;
   $(function () {
     $('#btn').click(function () {
       if ($('#input_url').val().trim()) {
@@ -295,6 +319,10 @@
     };
    **/
   function ajax() {
+    if (_flag) {
+      return;
+    }
+    _flag = true;
     $.ajax({
       //几个参数需要注意一下
       timeout: "20000000",
@@ -303,6 +331,7 @@
       url: "http://108.61.163.229:13242/download",//url
       data: $('#form').serialize(),//todo ：{input:''} 对象格式
       success: function (result) {
+        _flag = false;
         renderDom(result);
       },
       error: function () {
@@ -326,15 +355,16 @@
     }, {
       url: 'http://www.lspie.net/output/elonmusk/1063657780534341632/180x320/180x320.ts',
       size: '180x320',
-      type: 'ts'
+      type: 'ts',
+      quality: ''
     }];
     let _ads = ['https://wxungang.github.io/tosptodo/ads/alipay/alipay.jpg', 'https://wxungang.github.io/tosptodo/ads/yunshanfu/invite.jpg'];
     let _html = ``;
     console.log(_html);
     if (Array.isArray(_result)) {
-      console.log(_html);
-      _html = _result.map((item, index) =>
-        `<div class="item">
+      if (document.documentElement.getBoundingClientRect().width < 600) {
+        _html = _result.map((item, index) =>
+          `<div class="item_phone">
             <div class="logo">
                <img class="img_with_auto pre-vertical-center" src="${_ads[index % 2]}"/>
             </div>
@@ -344,6 +374,18 @@
             </div>
             <div class="download"><a href="${item.url}">另存到本地</a></div>
         </div>`).join('');
+      } else {
+        _html = `<div class="item_pad title"><p class="quality">Quality</p><p class="type">File Type</p><p class="size">Size</p><p class="url">Download</p></div>`;
+        _html += _result.map(item =>
+          `<div class="item_pad">
+                <p class="quality">${item.quality || '-'}</p>
+                <p class="type">${item.type}</p>
+                <p class="size">${item.size}</p>
+                <p class="url" style="text-decoration: underline;"><a href="${item.url}">Download</a></p>
+          </div>`
+        ).join('');
+      }
+
       console.log(_html);
     }
 
