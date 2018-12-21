@@ -157,7 +157,7 @@
       <div class="title">视频下载器</div>
       <div class="list">下载Twitter视频 - 在线下载器</div>
     </div>
-    <form onsubmit="return false;">
+    <form onsubmit="return false;" id="form">
       <input id="input_url" name="url" autofocus placeholder="输入您想要下载的视频地址"/>
     </form>
     <div class="btns">
@@ -217,7 +217,7 @@
       type: "POST",//方法类型
       dataType: "json",//预期服务器返回的数据类型
       url: "http://108.61.163.229:13242/download",//url
-      data: $('#form1').serialize(),//todo ：{input:''} 对象格式
+      data: $('#form').serialize(),//todo ：{input:''} 对象格式
       success: function (result) {
         renderDom(result);
       },
