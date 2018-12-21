@@ -157,7 +157,7 @@
       <div class="list">下载Twitter视频 - 在线下载器</div>
     </div>
     <form onsubmit="return false;">
-      <input name="url" autofocus placeholder="输入您想要下载的视频地址"/>
+      <input id="input_url" name="url" autofocus placeholder="输入您想要下载的视频地址"/>
     </form>
     <div class="btns">
       <div class="btn" id="btn">下载</div>
@@ -200,7 +200,11 @@
 <script type="text/javascript">
   $(function () {
     $('#btn').click(function () {
-      ajax();
+      if ($('#input_url').val().trim()) {
+        ajax();
+      } else {
+        alert('请先输入待下载的地址！')
+      }
     });
   });
 
@@ -217,7 +221,7 @@
         renderDom(result);
       },
       error: function () {
-        alert("异常！");
+        alert("系统异常！");
       }
     });
 
