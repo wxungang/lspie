@@ -97,10 +97,13 @@
       margin-bottom: 20px;
     }
 
-    .downloadResults .item img {
+    .downloadResults .item .logo {
       width: 180px;
-      height: 100px;
+      height: 84px;
       float: left;
+      position: relative;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
     }
 
     .downloadResults .item .desc {
@@ -110,7 +113,7 @@
     }
 
     @media screen and (max-width: 450px) {
-      .downloadResults .item img {
+      .downloadResults .item .logo {
         max-width: 40%;
       }
 
@@ -212,7 +215,9 @@
 <div class="downloadResults">
   <div class="content" id="downloadResultsContent">
     <!--<div class="item">-->
-    <!--<img class="img" src="https://pbs.twimg.com/media/Du1bgLcWwAAQ7UT.jpg"/>-->
+    <!--<div class="logo">-->
+    <!--<img class="img_with_auto pre-vertical-left" src="${_ads[index % 2]}"/>-->
+    <!--</div>-->
     <!--<div class="desc">-->
     <!--<div class="title pre-ellipsis">Despite our efforts down the stretch the Suns pulled away with this one,-->
     <!--111-103.-->
@@ -318,15 +323,21 @@
       url: 'http://www.lspie.net/output/elonmusk/1063657780534341632/180x320/180x320.ts',
       size: '180x320',
       type: 'ts'
+    }, {
+      url: 'http://www.lspie.net/output/elonmusk/1063657780534341632/180x320/180x320.ts',
+      size: '180x320',
+      type: 'ts'
     }];
-    let _ads = ['https://wxungang.github.io/tosptodo/ads/alipay/alipay.png', 'https://wxungang.github.io/tosptodo/ads/yunshanfu/invite.jpg'];
+    let _ads = ['https://wxungang.github.io/tosptodo/ads/alipay/alipay.jpg', 'https://wxungang.github.io/tosptodo/ads/yunshanfu/invite.jpg'];
     let _html = ``;
     console.log(_html);
     if (Array.isArray(_result)) {
       console.log(_html);
       _html = _result.map((item, index) =>
         `<div class="item">
-            <img class="img" src="${_ads[index % 2]}"/>
+            <div class="logo">
+               <img class="img_with_auto pre-vertical-center" src="${_ads[index % 2]}"/>
+            </div>
             <div class="desc">
               <div class="title pre-ellipsis">${item.url}</div>
               <div class="status">搬运成功 : ${item.size}</div>

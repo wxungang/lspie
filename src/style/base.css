@@ -45,6 +45,11 @@ p {
   -webkit-margin-after: 0;
 }
 
+.img_with_auto {
+  width: auto;
+  height: 100%;
+}
+
 .hidden {
   display: none !important;
 }
@@ -71,4 +76,47 @@ p {
   -webkit-line-clamp: 3 !important;
   -webkit-box-orient: vertical !important;
   display: -webkit-box !important;
+}
+
+/**
+* 解决垂直方向的一些问题
+**/
+.pre-vertical-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+}
+
+.pre-vertical-top {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  -webkit-transform: translate(-50%, 0);
+}
+
+.pre-vertical-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  -webkit-transform: translate(-50%, 0);
+}
+
+.pre-vertical-right {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(0, -50%);
+  -webkit-transform: translate(0, -50%);
+}
+
+.pre-vertical-left {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(0, -50%);
+  -webkit-transform: translate(0, -50%);
 }
