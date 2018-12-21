@@ -160,6 +160,31 @@
       box-sizing: border-box;
     }
 
+    /* ads style */
+    .ads .content {
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 26px;
+      padding: 20px 15px;
+      box-sizing: border-box;
+    }
+
+    .ads .item {
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .ads .item a {
+      color: #a52a2a;
+      margin-right: 12px;
+    }
+
+    .ads .item img {
+      width: 33%;
+      max-width: 160px;
+      float: left;
+      margin-right: 12px;
+    }
   </style>
 </head>
 <body>
@@ -196,6 +221,18 @@
     <!--<div content="download">另存到本地</div>-->
     <!--</div>-->
     <!--</div>-->
+  </div>
+</div>
+<div class="ads hidden">
+  <div class="content" id="ads">
+    <div class="item">
+      <p class="text">打开支付宝首页搜“590747302”领红包，领到大红包的小伙伴赶紧使用哦！</p>
+      <a href="https://wxungang.github.io/tosptodo/ads/alipay/alipay.png">支付宝扫码领红包</a>
+      <a href="https://wxungang.github.io/tosptodo/ads/yunshanfu/invite.jpg">银联云闪付扫码领红包</a>
+    </div>
+    <div class="item hidden">
+      <img src="https://wxungang.github.io/tosptodo/ads/yunshanfu/invite.jpg"/>
+    </div>
   </div>
 </div>
 <div class="tips">
@@ -277,31 +314,24 @@
      * }
    */
   function renderDom(result) {
-    let _result = result || {
-      "url_size": [
-        "180x320",
-        "360x640",
-        "720x1280"
-      ],
-      "url_path": [
-        "http://www.lspie.net/output/elonmusk/1063657780534341632/180x320/180x320.ts",
-        "http://www.lspie.net/output/elonmusk/1063657780534341632/360x640/360x640.ts",
-        "http://www.lspie.net/output/elonmusk/1063657780534341632/720x1280/720x1280.ts"
-      ]
-    };
-
+    let _result = result || [{
+      url: 'http://www.lspie.net/output/elonmusk/1063657780534341632/180x320/180x320.ts',
+      size: '180x320',
+      type: 'ts'
+    }];
+    let _ads = ['https://wxungang.github.io/tosptodo/ads/alipay/alipay.png', 'https://wxungang.github.io/tosptodo/ads/yunshanfu/invite.jpg'];
     let _html = ``;
     console.log(_html);
-    if (Array.isArray(_result.url_path)) {
+    if (Array.isArray(_result)) {
       console.log(_html);
-      _html = _result.url_path.map((item, index) =>
+      _html = _result.map((item, index) =>
         `<div class="item">
-            <img class="img" src="https://avatars2.githubusercontent.com/u/9672404?s=460&v=4"/>
+            <img class="img" src="${_ads[index % 2]}"/>
             <div class="desc">
-              <div class="title pre-ellipsis">${item}</div>
-              <div class="status">搬运成功 : ${_result.url_size[index]}</div>
+              <div class="title pre-ellipsis">${item.url}</div>
+              <div class="status">搬运成功 : ${item.size}</div>
             </div>
-            <div class="download"><a href="${item}">另存到本地</a></div>
+            <div class="download"><a href="${item.url}">另存到本地</a></div>
         </div>`).join('');
       console.log(_html);
     }
