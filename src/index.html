@@ -104,8 +104,19 @@
     }
 
     .downloadResults .item .desc {
-      margin-left: 200px;
+      margin-left: 180px;
+      padding-left: 20px;
       line-height: 30px;
+    }
+
+    @media screen and (max-width: 450px) {
+      .downloadResults .item img {
+        max-width: 40%;
+      }
+
+      .downloadResults .item .desc {
+        margin-left: 40%;
+      }
     }
 
     .downloadResults .item .status {
