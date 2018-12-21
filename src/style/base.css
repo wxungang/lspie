@@ -36,3 +36,26 @@ p {
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
 }
+
+
+.pre-ellipsis {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+.pre-ellipsis2 {
+  word-break: break-all !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  display: -webkit-box !important;
+}
+.pre-ellipsis3 {
+  word-break: break-all !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  -webkit-line-clamp: 3 !important;
+  -webkit-box-orient: vertical !important;
+  display: -webkit-box !important;
+}
