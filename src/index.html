@@ -206,7 +206,7 @@
 </div>
 </body>
 <script type="text/javascript" src="libs/zepto.js"></script>
-<script type="text/javascript" src="libs/download.js"></script>
+<!--<script type="text/javascript" src="libs/download.js"></script>-->
 <script type="text/javascript">
   $(function () {
     $('#btn').click(function () {
@@ -218,7 +218,29 @@
     });
   });
 
-
+  /**
+   *
+   //now
+   result = {
+      "url_size": ["180x320", "360x640", "720x1280"],
+      "url_path": [
+        "http://www.lspie.net/output/elonmusk/1063657780534341632/180x320/180x320.ts",
+        "http://www.lspie.net/output/elonmusk/1063657780534341632/360x640/360x640.ts",
+        "http://www.lspie.net/output/elonmusk/1063657780534341632/720x1280/720x1280.ts"]
+    };
+   //better
+   result = {
+      code: 10000,
+      data: [{
+        size: '180x320',
+        url: 'http://www.lspie.net/output/elonmusk/1063657780534341632/180x320/180x320.ts',
+        type: 'mp4',
+        quality: '720x1280',
+        length: '1024*2*16',
+        image: '',//预览图片
+      }]
+    };
+   **/
   function ajax() {
     $.ajax({
       //几个参数需要注意一下
