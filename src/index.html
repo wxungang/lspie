@@ -92,6 +92,7 @@
 
     .downloadResults .item {
       overflow: hidden;
+      position: relative;
       height: 84px;
       margin-bottom: 20px;
     }
@@ -109,6 +110,13 @@
 
     .downloadResults .item .status {
       color: #00b4ff;
+    }
+
+    .downloadResults .item .download {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      color: #18bc9c;
     }
 
     /* tips style */
@@ -174,6 +182,7 @@
     <!--111-103.-->
     <!--</div>-->
     <!--<div class="status">下载成功</div>-->
+    <!--<div content="download">另存到本地</div>-->
     <!--</div>-->
     <!--</div>-->
   </div>
@@ -257,8 +266,9 @@
             <img class="img" src="https://avatars2.githubusercontent.com/u/9672404?s=460&v=4"/>
             <div class="desc">
               <div class="title pre-ellipsis">${item}</div>
-              <div class="status">下载成功 : ${_result.url_size[index]}</div>
+              <div class="status">搬运成功 : ${_result.url_size[index]}</div>
             </div>
+            <div class="download"><a href="${item}">另存到本地</a></div>
         </div>`).join('');
       console.log(_html);
     }
