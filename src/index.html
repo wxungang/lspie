@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="Access-Control-Allow-Origin" content="*">
+  <meta http-equiv="keywords" content="keyword,视频下载,音视频,twitter">
+  <title>音视频搬运</title>
+  <link type="text/css" rel="stylesheet" href="./style/base.css"/>
+  <style type="text/css">
+    .content {
+      max-width: 1104px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    /* header style */
+    .header {
+      background-color: #2f4f4f;
+      height: 50px;
+
+    }
+
+    .header .logo {
+      line-height: 50px;
+      font-size: 25px;
+      color: #fff;
+      padding-left: 10px;
+    }
+
+    /* downloadBox style */
+    .downloadBox {
+      background-color: #1e90ff;
+      padding: 20px 0;
+    }
+
+    .download-header {
+      text-align: center;
+      color: #fff;
+      font-size: 16px;
+    }
+
+    .download-header .title {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    form {
+      width: 80%;
+      margin: 30px auto;
+      height: 50px;
+    }
+
+    form input {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 15px;
+      box-sizing: border-box;
+      border-radius: 5px;
+      height: 50px;
+      line-height: 50px;
+      background-color: #fff;
+    }
+
+    .btns {
+      overflow: hidden;
+      line-height: 50px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .btns .btn {
+      width: 45%;
+      float: left;
+      border-radius: 5px;
+      background-color: #2e8b57;
+      margin-left: 27.5%;
+    }
+
+    /* tips style */
+    .tips {
+      background-color: #fafafa;
+      padding: 25px 0;
+    }
+
+    .tips .tips-header {
+      color: #00b4ff;
+      font-size: 28px;
+      text-align: center;
+    }
+
+    .tips .lists {
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 26px;
+      color: #151515;
+    }
+
+    .tips .lists .title {
+      font-weight: bold;
+      margin-bottom: 5px;
+      margin-top: 15px;
+    }
+
+    .tips .lists .list-item {
+      padding: 0 15px;
+      box-sizing: border-box;
+    }
+
+  </style>
+</head>
+<body>
+<div class="header">
+  <div class="content">
+    <div class="logo">
+      音视频搬运
+    </div>
+  </div>
+</div>
+<div class="downloadBox">
+  <div class="content">
+    <div class="download-header">
+      <div class="title">视频下载器</div>
+      <div class="list">下载Twitter视频 - 在线下载器</div>
+    </div>
+    <form onsubmit="return false;">
+      <input name="url" autofocus placeholder="输入您想要下载的视频地址"/>
+    </form>
+    <div class="btns">
+      <div class="btn" id="btn">下载</div>
+    </div>
+  </div>
+</div>
+<div class="tips">
+  <div class="content">
+    <div class="tips-header">如何下载视频？</div>
+    <div class="lists">
+      <div class="title">1、输入您想要下载的twitter视频url</div>
+      <img class="list-item" src="./images/how-to-download.png">
+    </div>
+    <div class="lists">
+      <div class="title">2、点击"下载"按钮</div>
+    </div>
+    <div class="lists">
+      <div class="title">3、在“Twitter视频下载器”处理您的请求时等待几秒钟即可</div>
+      <p class="list-item">① 我们的Twitter视频下载器使您能够以最直观的方式下载来自于Twitter的视频！</p>
+      <p class="list-item">② 立即下载您所关注的twitter用户的视频。只需将twitter视频url复制到白框内并点击下载按钮，等待几秒钟即可完成！</p>
+    </div>
+  </div>
+</div>
+</body>
+<script type="text/javascript" src="libs/zepto.js"></script>
+<script type="text/javascript">
+  (function () {
+    $('#btn').click(function () {
+      download();
+    });
+  })();
+
+  function download() {
+    $.ajax({
+      //几个参数需要注意一下
+      timeout: "20000000",
+      type: "POST",//方法类型
+      dataType: "json",//预期服务器返回的数据类型
+      url: "http://108.61.163.229:13242/download",//url
+      data: $('#form1').serialize(),//todo ：{input:''} 对象格式
+      success: function (result) {
+        dealData(result);
+      },
+      error: function () {
+        alert("异常！");
+      }
+    });
+
+    function dealData(result) {
+      // var html = "";
+      // var size = result.url_size;
+      // var urls = result.url_path;
+      // var length = size.length;
+      // for (var i = 0; i < length; i++) {
+      //   var url_size = size[i];
+      //   var url_path = urls[i];
+      //   html += '<tr><td>' + url_size + '</td><td>' + `<a href=${url_path}>` + url_path + `</a>` + '</td></tr>';
+      // }
+      // $('#table tbody').append(html);
+    }
+  }
+
+
+</script>
+</html>
