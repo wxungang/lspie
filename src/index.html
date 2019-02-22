@@ -360,7 +360,13 @@
     }];
     let _ads = ['https://wxungang.github.io/tosptodo/ads/alipay/alipay.jpg', 'https://wxungang.github.io/tosptodo/ads/yunshanfu/invite.jpg'];
     let _html = ``;
-    console.log(_html);
+    console.log(_result);
+
+    //兼容非数组格式 返回值！
+    if (!Array.isArray(_result)) {
+      _result = [_result];
+    }
+
     if (Array.isArray(_result)) {
       if (document.documentElement.getBoundingClientRect().width < 600) {
         _html = _result.map((item, index) =>
