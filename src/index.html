@@ -244,10 +244,10 @@
 
     <!-- for pad & pc style -->
     <!--<div class="item_pad">-->
-        <!--<p class="quality">${item.quality || '-'}</p>-->
-        <!--<p class="type">${item.type}</p>-->
-        <!--<p class="size">${item.size}</p>-->
-        <!--<p class="url" style="text-decoration: underline;"><a href="${item.url}">Download</a></p>-->
+    <!--<p class="quality">${item.quality || '-'}</p>-->
+    <!--<p class="type">${item.type}</p>-->
+    <!--<p class="size">${item.size}</p>-->
+    <!--<p class="url" style="text-decoration: underline;"><a href="${item.url}">Download</a></p>-->
     <!--</div>-->
   </div>
 </div>
@@ -328,7 +328,7 @@
       timeout: "20000000",
       type: "POST",//方法类型
       dataType: "json",//预期服务器返回的数据类型
-      url: "http://108.61.163.229:13242/download",//url
+      url: "http://47.101.47.187:8988/download",//url
       data: $('#form').serialize(),//todo ：{input:''} 对象格式
       success: function (result) {
         _flag = false;
